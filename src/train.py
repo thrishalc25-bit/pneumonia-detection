@@ -10,7 +10,7 @@ from model import get_model
 # ------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-data_dir = "../data"
+data_dir = "chest_xray"
 train_loader, val_loader = get_dataloaders(data_dir)
 
 model = get_model(num_classes=2)

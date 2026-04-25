@@ -1,7 +1,7 @@
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 
-def get_dataloaders(data_dir="data", batch_size=32):
+def get_dataloaders(data_dir="chest_xray", batch_size=32):
 
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
