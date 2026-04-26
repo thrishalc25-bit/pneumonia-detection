@@ -36,7 +36,6 @@ st.write("Upload a chest X-ray image and get prediction")
 uploaded_file = st.file_uploader("Upload X-ray image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file is not None:
-
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded X-ray", use_container_width=True)
 
