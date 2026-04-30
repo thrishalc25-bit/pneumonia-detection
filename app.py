@@ -4,6 +4,22 @@ import torch.nn as nn
 import torchvision.transforms as transforms
 from PIL import Image
 import torchvision.models as models
+import gdown
+import os
+
+# ----------------------------
+# Download Model Automatically
+# ----------------------------
+model_path = "model/pneumonia_model.pth"
+
+if not os.path.exists(model_path):
+    os.makedirs("model", exist_ok=True)
+    st.info("Downloading model... please wait")
+    gdown.download(
+        "https://drive.google.com/uc?id=YOUR_FILE_ID",
+        model_path,
+        quiet=False
+    )
 
 # ----------------------------
 # Load Model
@@ -12,8 +28,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 model = models.resnet18(weights=None)
 model.fc = nn.Linear(model.fc.in_features, 2)
-
-model.load_state_dict(torch.load("model/pneumonia_model.pth", map_location=device))
+model.load_state_dict(torch.load(model_path, map_location=device))
 model = model.to(device)
 model.eval()
 
@@ -47,6 +62,5 @@ if uploaded_file is not None:
         _, pred = torch.max(outputs, 1)
 
     classes = ["Normal", "Pneumonia"]
-
     st.subheader("Prediction:")
     st.success(f"Result: {classes[pred.item()]}")
