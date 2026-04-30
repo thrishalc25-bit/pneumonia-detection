@@ -16,7 +16,7 @@ if not os.path.exists(model_path):
     os.makedirs("model", exist_ok=True)
     st.info("Downloading model... please wait")
     gdown.download(
-        "https://drive.google.com/uc?id=YOUR_FILE_ID",
+        "https://drive.google.com/uc?id=19EgTseAXs_3UkPyPZfmES7vXHWOAzlP-",
         model_path,
         quiet=False
     )
